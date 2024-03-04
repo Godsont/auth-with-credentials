@@ -67,6 +67,7 @@ export default function RegisterForm() {
   return (
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-10 rounded-3xl border-t-4  border-blue-200">
+      <img src="/B&W_logo.jpg" alt="Logo de la empresa" className="mt-5" style={{ width: '125px', height: 'auto', margin: 'auto' }} /> 
         <h1 className="text-xl font-bold my-10">Regístrate</h1>
         <h6 className="text-sm my-4"> Utiliza el código de empresa proporcionado por STR</h6> 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3"> {/** handle the data submission */}
