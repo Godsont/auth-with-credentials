@@ -74,25 +74,25 @@ export default function RegisterForm() {
           <input 
             onChange={(e) => setBusiness(e.target.value)} // Nos indica que si cambia de valor asigne a setName el valor
             type="fixed-number"
-            placeholder="Código Empresa"
+            placeholder="Código Empresa" //Valor por defecto que aparece en el campo a rellenar
             className="rounded-3xl"
           />
           <input 
             onChange={(e) => setName(e.target.value)} // Nos indica que si cambia de valor asigne a setName el valor
             type="text"
-            placeholder="Nombre Usuario"
+            placeholder="Nombre Usuario" //Valor por defecto que aparece en el campo a rellenar
             className="rounded-3xl"
           />
           <input
             onChange={(e) => setEmail(e.target.value)} // Nos indica que si cambia de valor asigne a setEmail el valor
             type="text"
-            placeholder="Email"
+            placeholder="Email" //Valor por defecto que aparece en el campo a rellenar
             className="rounded-3xl"
           />
           <input
             onChange={(e) => setPassword(e.target.value)} // Nos indica que si cambia de valor asigne a setPassword el valor
             type="password"
-            placeholder="Contraseña"
+            placeholder="Contraseña" //Valor por defecto que aparece en el campo a rellenar como contraseña
             className="rounded-3xl"
           />
           <button className="bg-blue-500 bg-opacity-40  border border-blue-600 text-blue-600 font-bold cursor-pointer rounded-3xl px-6 py-2">

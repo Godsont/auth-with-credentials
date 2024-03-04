@@ -6,8 +6,8 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
-  if (session) redirect("/dashboard");
-
+  if (session) redirect("/dashboard"); // "/dashboard" anomaly-detection
+ 
   return (
     <main>
       <LoginForm />

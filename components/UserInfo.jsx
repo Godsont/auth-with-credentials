@@ -14,7 +14,7 @@ export default function UserInfo() {
           Usuario: <span className="font-bold">{session?.user?.name}</span>
         </div>
         <div>
-          Código de Empresa: <span className="font-bold">{session?.business_id}</span>
+          Código de Empresa: <span className="font-bold">{session?.user?.business_id}</span>
         </div>
         <div>
           Email: <span className="font-bold">{session?.user?.email}</span> 
