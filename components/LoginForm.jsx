@@ -23,7 +23,8 @@ export default function LoginForm() {
       });
 
       if (res.error) {
-        setError("Invalid Credentials");
+        setError("Usuario o Contraseña incorrectos");
+        className="bg-red-500 bg-opacity-20 border border-red-600 text-red-600 text-xs py-2 px-4 rounded-md mt-2 flex items-center"
         return;
       }
 
@@ -35,32 +36,38 @@ export default function LoginForm() {
 
   return (
     <div className="grid place-items-center h-screen">
-      <div className="shadow-lg p-5 rounded-lg border-t-4 border-green-400">
-        <h1 className="text-xl font-bold my-4">Login</h1>
+      <div className="shadow-lg p-10 rounded-3xl border-t-4 border-blue-200">
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <h1 className="text-xl font-bold my-10">¡Bienvenido!</h1>
+        <h6 className="text-sm my-10">Utiliza tus credenciales para acceder de nuevo</h6>
+        
+
+        <form onSubmit={handleSubmit} className=" flex flex-col gap-3 ">
           <input
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             placeholder="Email"
+            className="rounded-3xl" // Apply rounded-lg class to input elements
           />
           <input
             onChange={(e) => setPassword(e.target.value)}
             type="password"
-            placeholder="Password"
+            placeholder="Contraseña"
+            className="rounded-3xl"
           />
-          <button className="bg-green-600 text-white font-bold cursor-pointer px-6 py-2">
-            Login
+          <button className="bg-blue-500 bg-opacity-40 border border-blue-600 text-blue-600 font-bold cursor-pointer px-6 py-2 rounded-3xl" href={`/dasboard`}>
+            Iniciar sesión {/* If successful this should redirectionate to User Landing Page href={/LandingPage} */}
           </button>
           {error && (
-            <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
+            <div className="bg-red-500 bg-opacity-20 border border-red-600 text-red-600 text-xs py-2 px-4 rounded-md mt-2 flex items-center">
               {error}
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-right" href={"/register"}>
-            Don't have an account? <span className="underline">Register</span>
+          <Link className="text-xs mt-3 text-right" href={"/register"}>
+            ¿Todavía no tienes tu cuenta? <span className="underline">Regístrate aquí</span>
           </Link>
+          
         </form>
       </div>
     </div>

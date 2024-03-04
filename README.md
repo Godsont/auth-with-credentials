@@ -4,6 +4,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
+Note: If a problem with Tailwind CSS is encountered please install PostCSS
+
+See link below: https://flaviocopes.com/fix-postcss-webpack-ruleset-oneof/ 
+
+Run command: 
+
+```bash
+npm install  postcss # install the postcss dependencies that allow the registration
+
+```
+Run command to start the server
+
 ```bash
 npm run dev
 # or
