@@ -1,4 +1,5 @@
-import { AuthProvider } from "./Providers";
+// We pass all the Providers from AuthProvider to this script
+import { AuthProvider } from "./Providers"; // import from Providers the children from Authprovider
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -13,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>{children}</AuthProvider>  
       </body>
     </html>
   );

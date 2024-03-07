@@ -21,6 +21,11 @@ export default function RegisterForm() {
       setError("Debes rellenar todos los campos correctamente");
       return;
     }
+    // Verificar si el business_id tiene exactamente 4 dígitos y si son números
+    if (!/^\d{4}$/.test(business_id)) {
+      setError("El código de empresa debe ser un número de 4 dígitos."); // si no lo tiene imprimir por pantalla el error
+      return;
+    }
 
     try {
       const resUserExists = await fetch("api/userExists", { // almacenamos la entrada del usuario
@@ -53,10 +58,14 @@ export default function RegisterForm() {
       });
 
       if (res.ok) {
+        const {message} = await res.json();
         const form = e.target;
         form.reset();
-        router.push("/");
+        router.push("/"); // Rdirects the user when successfully regsitered to the log in page (or the verificationPage)
+        //router.push("/verifyRequest")
       } else {
+        const {message} = await res.json();
+        setError(message); //
         console.log("Registro de usuario fallido");
       }
     } catch (error) {
@@ -67,14 +76,20 @@ export default function RegisterForm() {
   return (
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-10 rounded-3xl border-t-4  border-blue-200">
-      <img src="/B&W_logo.jpg" alt="Logo de la empresa" className="mt-5" style={{ width: '125px', height: 'auto', margin: 'auto' }} /> 
+      <img src="/B_W_logo.jpg" alt="Logo de la empresa" className="mt-5" style={{ width: '125px', height: 'auto', margin: 'auto' }} /> 
         <h1 className="text-xl font-bold my-10">Regístrate</h1>
         <h6 className="text-sm my-4"> Utiliza el código de empresa proporcionado por STR</h6> 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3"> {/** handle the data submission */}
         
           <input 
-            onChange={(e) => setBusiness(e.target.value)} // Nos indica que si cambia de valor asigne a setName el valor
-            type="fixed-number"
+            // onChange={(e) => setBusiness(e.target.value)} // Nos indica que si cambia de valor asigne a setName el valor
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d{0,4}$/.test(value)) { // Verifica si el valor es un número de hasta 4 dígitos
+                  setBusiness(value);
+              }
+            }}
+            type="number"
             placeholder="Código Empresa" //Valor por defecto que aparece en el campo a rellenar
             className="rounded-3xl"
           />

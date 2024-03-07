@@ -3,7 +3,7 @@ import User from "@/models/user";
 //import Client from "@/models/client"; // Si queremos definir nuestro propio  cliente, tenemos que crear el modelo y esquema
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs"; // library that provides the hash method for our password
 
 export const authOptions = { // Proporcionamos los valores para NextAuth 
   providers: [
@@ -11,25 +11,27 @@ export const authOptions = { // Proporcionamos los valores para NextAuth
       name: "credentials", // contains the cluster name information
       credentials: {},
 
-      async authorize(credentials) {
+      async authorize(credentials) {  //function provided by the CredentialsProvider to authorize users based on the provided credentials. 
+        // queryies a MongoDB database to find a user with the provided email and then checking if the password matches using bcrypt for password hashing
+        //bcrypt method should be the same for writing and reading
+        //const { email, business_id, password } = credentials; // import the input values form the Login page with the business _id
         const { email, password } = credentials;
-
         try {
           await connectMongoDB(); // DB connection
-          const user = await User.findOne({ email }); // definimos nuestro usuario y lo buscamos por el correo electronico en la BBDD
-          //const user = await Client.findOne({ email });
+          //const user = await User.findOne({ email, business_id }); // para iniciar y comunicar en la base de datos buscamos por el correo electronico  y business_id en la BBDD
+          const user = await User.findOne({ email }); // buscamos solo el email
 
           if (!user) {
             return null;
           }
+          
+          const passwordsMatch = await bcrypt.compare(password, user.password); // Comprobación de las contraseñas hasheadass al comparar nuestra password con la guardada (ambas hasheadas)
 
-          const passwordsMatch = await bcrypt.compare(password, user.password); // Comprobación de las contraseñas hasheadass
-
-          if (!passwordsMatch) {
-            return null;
+          if (!passwordsMatch) { // check whether the password match or not
+            return null; 
           }
 
-          return user;
+          return user; // if all goes well we return  the user object
         } catch (error) {
           console.log("Error: ", error);
         }
@@ -37,14 +39,14 @@ export const authOptions = { // Proporcionamos los valores para NextAuth
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: "jwt", // JSON web tokens It determines how sessions are managed and authenticated.
   },
   secret: process.env.NEXTAUTH_SECRET, // Pasamos el valor de  la clave secreta que generamos en .env para encryptar y desencriptar
   pages: {
-    signIn: "/",
+    signIn: "/", // This specifies the pages used for authentication/login. In this case, the signIn option is set to '/', indicating that the root page will be used for sign-in
   },
 };
 
-const handler = NextAuth(authOptions);
+const handler = NextAuth(authOptions);  // Create a variable with the different Authentication options. This handler will be used to handle authentication requests.
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }; //  This exports the handler created above as GET and POST. This allows the handler to be accessed through HTTP GET and POST requests respectively.

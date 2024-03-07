@@ -22,5 +22,6 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-const User = models.User || mongoose.model("User", userSchema);
+const User = models.User || mongoose.model("User", userSchema); // import the models from moongoose in case they exist
+// or creates the user model with the user schema
 export default User;
