@@ -8,6 +8,33 @@ Note: If a problem with Tailwind CSS is encountered please install PostCSS
 
 See link below: https://flaviocopes.com/fix-postcss-webpack-ruleset-oneof/ 
 
+Note: 
+
+The default .env file is nto included
+
+This .env file must contain the three fields required to work which are: 
+
+```bash
+
+#.env file configuration: 
+
+# DB Connection String - provides the cluster/project to which we want to connect
+# users_database provide the database we want to write data into 
+MONGODB_URI = mongodb+srv://jamateoslu:MVAynDTBY0WEE6Rr@credentials.hpa1qfu.mongodb.net/users_database?retryWrites=true&w=majority
+
+
+# Dirección web en la que hosteamos nuestra aplicación para hacer login con NextAuth
+NEXTAUTH_URL=http://localhost:3000 
+# NEXTAUTH_URL=https://str-drones/login_page
+
+
+# NextAuth.js secret for JWT encryption and decryption 
+# Random 32-50 string automatically generated
+NEXTAUTH_SECRET=54a18f2a8f80f62e9ae3bc2a7464b1b2e5d5d5e18b8f12f1a8
+
+```
+
+
 Install npm by downloading the latest stabñle version: 
 
 https://nodejs.org/en/download
@@ -18,6 +45,15 @@ Run command:
 npm install  postcss # install the postcss dependencies that allow the registration 
 # When running this command version 8.4.35 works with next-auth 
 # Version 10.2.3 does not work properly
+
+```
+
+
+Run command: 
+
+```bash
+npm install  tailwind==10.2.3 # install the postcss dependencies that allow the registration 
+# When running this command version 10.2.3 works
 
 ```
 
