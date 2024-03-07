@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import {signIn} from "next-auth/react"
 
 
 export default function RegisterForm() {
@@ -110,7 +111,7 @@ export default function RegisterForm() {
           <Link className="text-xs mt-3 text-right" href={"/"}>
             Ya tengo cuenta y quiero <span className="underline"> acceder</span>
           </Link>
-
+                        
         </form>
       </div>
     </div>

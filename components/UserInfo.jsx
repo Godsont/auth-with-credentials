@@ -20,7 +20,12 @@ export default function UserInfo() {
           Email: <span className="font-bold">{session?.user?.email}</span> 
         </div>
         <button
-          onClick={() => signOut()}
+          onClick={() => signOut(
+            {
+              callbackUrl: "/register", // Redirige a la ventana de registro tras salir de la app
+              // Tendría sentido redirigir siempre a la principal de login http:localhost:3000
+            }
+          )}
           className="bg-red-500 bg-opacity-20 border border-red-600 text-red-600 text-RED font-bold rounded-3xl px-6 py-2 mt-3"
         >
           Log Out
