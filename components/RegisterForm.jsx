@@ -23,8 +23,8 @@ export default function RegisterForm() {
       return;
     }
     // Verificar si el business_id tiene exactamente 4 dígitos y si son números
-    if (!/^\d{4}$/.test(business_id)) {
-      setError("El código de empresa debe ser un número de 4 dígitos."); // si no lo tiene imprimir por pantalla el error
+    if (!/^\d{6}$/.test(business_id)) {
+      setError("El código de empresa debe ser un número de 6 dígitos."); // si no lo tiene imprimir por pantalla el error
       return;
     }
 
@@ -85,13 +85,17 @@ export default function RegisterForm() {
           <input 
             // onChange={(e) => setBusiness(e.target.value)} // Nos indica que si cambia de valor asigne a setName el valor
             onChange={(e) => {
-              const value = e.target.value;
-              if (/^\d{0,4}$/.test(value)) { // Verifica si el valor es un número de hasta 4 dígitos
+              let value = e.target.value;
+              // Verifica si el valor es un número de hasta 6 dígitos y ajusta si es necesario
+              if (/^\d{6}$/.test(value)) { // Verifica si el valor es un número de hasta 6 dígitos
                   setBusiness(value);
               }
-            }}
+          }}
             type="number"
             placeholder="Código Empresa" //Valor por defecto que aparece en el campo a rellenar
+            min="000000" // Establece el valor mínimo a 0
+            max="999999" // Establece el valor máximo a 999999 (6 dígitos)
+            maxLength="6" // Limita la cantidad máxima de caracteres a 6
             className="rounded-3xl"
           />
           <input 

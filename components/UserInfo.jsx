@@ -22,7 +22,7 @@ export default function UserInfo() {
         <button
           onClick={() => signOut(
             {
-              callbackUrl: "/register", // Redirige a la ventana de registro tras salir de la app
+              callbackUrl: "/", // Redirige a la ventana de registro tras salir de la app
               // Tendría sentido redirigir siempre a la principal de login http:localhost:3000
             }
           )}
