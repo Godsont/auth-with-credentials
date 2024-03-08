@@ -20,7 +20,7 @@ This .env file must contain the three fields required to work which are:
 
 # DB Connection String - provides the cluster/project to which we want to connect
 # users_database provide the database we want to write data into 
-MONGODB_URI = mongodb+srv://jamateoslu:MVAynDTBY0WEE6Rr@credentials.hpa1qfu.mongodb.net/users_database?retryWrites=true&w=majority
+MONGODB_URI = mongodb+srv://<username>:<passord>@credentials.hpa1qfu.mongodb.net/users_database?retryWrites=true&w=majority
 
 
 # Dirección web en la que hosteamos nuestra aplicación para hacer login con NextAuth
